@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+	<!-- Navbar -->
+	{% include('layouts/navbar.html.twig') %}
+	<!-- /.navbar -->
+
+	<!-- Main Sidebar Container -->
+	{% include('layouts/sidebar.html.twig') %}
+
+	<!-- Content Wrapper. Contains page content -->
+		<div
+		class="content-wrapper"> <!-- Content Header (Page header) -->
+		{% block content  %}{% endblock %}
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+	<footer class="main-footer">
+	<center>	<strong>Copyright &copy; 2022 
+			    All rights reserved.
+		
+		</footer>
+
+	{% endblock %}
