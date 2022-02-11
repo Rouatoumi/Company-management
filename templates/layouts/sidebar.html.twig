@@ -36,131 +36,217 @@
 			<ul
 				class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
-				               with font-awesome or any other icon font library -->
+																																																																												               with font-awesome or any other icon font library -->
 				<li class="nav-item menu-open">
 					<a href="#" class="nav-link active">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Dashboard
-							
+
 						</p>
 					</a>
-					
-				</li>
-				
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-copy"></i>
-						<p>
-							Admin 
-						</p>
-					</a>
-					
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-chart-pie"></i>
-						<p>
-							Employée
-						</p>
-					</a>
-					
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tree"></i>
-						<p>
-							Service
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
+					{#}PARTIE ADMIN{#}
+					{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item">
-							<a href="pages/UI/general.html" class="nav-link">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-copy"></i>
+								<p>
+									Admin
+								</p>
+							</a>
+
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-chart-pie"></i>
+								<p>
+									Employée
+								</p>
+								<i class="right fas fa-angle-left"></i>
+							</a>
+							<ul class="nav nav-treeview"></li>
+						</li>
+						<li class="nav-item">
+							<a href="user" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Afficher Service</p>
+								<p>Afficher Employée</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/UI/icons.html" class="nav-link">
+							<a href="user/new" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Ajouter Service</p>
+								<p>Ajouter Employée</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="pages/UI/buttons.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Projets</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/UI/sliders.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Formations</p>
-							</a>
-						</li>
-						
 					</ul>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-edit"></i>
-						<p>
-							Rendez-Vous 
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Afficher Rendez-Vous</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/forms/advanced.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Ajouter Rendez-Vous </p>
-							</a>
-						</li>
-					
-					</ul>
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-table"></i>
-						<p>
-							Messages 
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/tables/simple.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Envoyer Message</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/tables/data.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Afficher Message</p>
-							</a>
-						</li>
-						
-					</ul>
-				</li>
-				
-					
-				
-				
-			
-			
-			
-			</ul>
-		</nav>
-		<!-- /.sidebar-menu -->
-	</div>
-	<!-- /.sidebar -->
-</aside>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-tree"></i>
+					<p>
+						Service
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="service" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Service</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="service/new" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Ajouter Service</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="projet" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Projets</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="formation" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Formations</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-edit"></i>
+					<p>
+						Rendez-Vous
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="rendez/vous" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Rendez-Vous</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="rendez/vous/new" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Ajouter Rendez-Vous
+							</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-table"></i>
+					<p>
+						Messages
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="message/new" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Envoyer Message</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="message" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Message</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+			{#}PARTIE USER{#}
+
+		{% else   %}
+			<li class="nav-item"></li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-tree"></i>
+					<p>
+						Service
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="service" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Service</p>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="projet" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Projets</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="formation" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Formations</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-edit"></i>
+					<p>
+						Rendez-Vous
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="rendez/vous" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Rendez-Vous</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">
+					<i class="nav-icon fas fa-table"></i>
+					<p>
+						Messages
+						<i class="fas fa-angle-left right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a href="message/new" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Envoyer Message</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="message" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Afficher Message</p>
+						</a>
+					</li>
+
+				</ul>
+			</li>
+		{% endif %}}
+
+
+	</li>
+
+
+</ul></nav><!-- /.sidebar-menu --></div><!-- /.sidebar --></aside>

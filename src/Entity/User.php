@@ -38,11 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $num_telephone;
 
-    public function __toString()
-    {
-        //return $this->roles;
-        // return $this->nom . ' ' . $this->prenom;
-    }
+    
 
     public function getId(): ?int
     {
@@ -78,9 +74,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return  array_unique($roles);
+        $roles[] = 'ROLE_USER'; 
+        
+       return  array_unique($roles);
     }
 
     public function setRoles(array $roles): self
