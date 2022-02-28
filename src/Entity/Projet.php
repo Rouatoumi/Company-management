@@ -30,13 +30,9 @@ class Projet
     #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'projets')]
     private $service;
 
-    #[ORM\OneToMany(mappedBy: 'projet', targetEntity: Technologie::class)]
+    #[ORM\ManyToOne(targetEntity: Technologie::class, inversedBy: 'projets')]
     private $Technologie;
 
-    public function __construct()
-    {
-        $this->Technologie = new ArrayCollection();
-    }
 
 
 
@@ -107,33 +103,17 @@ class Projet
         return $this;
     }
 
-    /**
-     * @return Collection|Technologie[]
-     */
-    public function getTechnologie(): Collection
+    public function getTechnologie(): ?Technologie
     {
         return $this->Technologie;
     }
 
-    public function addTechnologie(Technologie $technologie): self
+    public function setTechnologie(?Technologie $Technologie): self
     {
-        if (!$this->Technologie->contains($technologie)) {
-            $this->Technologie[] = $technologie;
-            $technologie->setProjet($this);
-        }
+        $this->Technologie = $Technologie;
 
         return $this;
     }
 
-    public function removeTechnologie(Technologie $technologie): self
-    {
-        if ($this->Technologie->removeElement($technologie)) {
-            // set the owning side to null (unless already changed)
-            if ($technologie->getProjet() === $this) {
-                $technologie->setProjet(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

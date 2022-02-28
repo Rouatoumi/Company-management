@@ -1,11 +1,17 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}New RendezVous{% endblock %}
+{% block title %}Ajouter RendezVous
+{% endblock %}
 
 {% block content %}
-    <h1>Create new RendezVous</h1>
+	<h1>Ajouter nouveau RendezVous</h1>
 
-    {{ include('rendez_vous/_form.html.twig') }}
+	{{ include('rendez_vous/_form.html.twig') }}
+	<div class="card-footer">
+		<button class="btn btn-info " type="submit">
+			<a href="{{ path('rendez_vous_index') }}" class="text-white">back to list</a>
 
-    <a href="{{ path('rendez_vous_index') }}">back to list</a>
+		</button>
+	</div>
+
 {% endblock %}

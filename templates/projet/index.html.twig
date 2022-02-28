@@ -1,12 +1,12 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Projet index
+{% block title %}Affichage Projet 
 {% endblock %}
 
 {% block content %}
-	<h1>Projet index</h1>
+	<h1>Projet </h1>
 
-	<table class="table">
+	<table class="table table-stripped table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -14,6 +14,9 @@
 				<th>Deadline</th>
 				<th>Responsable</th>
 				<th>Equipe</th>
+				<th>technologie
+				</th>
+
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -25,9 +28,21 @@
 					<td>{{ projet.deadline ? projet.deadline|date('Y-m-d') : '' }}</td>
 					<td>{{ projet.responsable }}</td>
 					<td>{{ projet.equipe }}</td>
+					<td>{{ projet.technologie.nom }}</td>
+
 					<td>
-						<a href="{{ path('projet_show', {'id': projet.id}) }}">show</a>
-						<a href="{{ path('projet_edit', {'id': projet.id}) }}">edit</a>
+						<button class="btn btn-outline-primary" type="submit">
+							<a href="{{ path('projet_show', {'id': projet.id}) }}">show</a>
+
+						</button>
+						{% if is_granted('ROLE_ADMIN') %}
+
+							<button class="btn btn-outline-primary" type="submit">
+								<a href="{{ path('projet_edit', {'id': projet.id}) }}">edit</a>
+
+							</button>
+						{% endif %}
+
 					</td>
 				</tr>
 			{% else %}
@@ -37,6 +52,11 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	{% if is_granted('ROLE_ADMIN') %}
 
-	<a href="{{ path('projet_new') }}">Create new</a>
+		<button class="btn btn-outline-primary" type="submit">
+			<a href="{{ path('projet_new') }}">Create new</a>
+		</button>
+	{% endif %}
+
 {% endblock %}

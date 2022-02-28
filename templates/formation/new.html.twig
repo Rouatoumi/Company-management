@@ -1,12 +1,17 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}New Formation
+{% block title %}Nouveau Formation
 {% endblock %}
 
 {% block content %}
-	<h1>Create new Formation</h1>
+	<h1>Ajouter nouveau Formation</h1>
 
 	{{ include('formation/_form.html.twig') }}
+	<div class="card-footer">
+		<button class="btn btn-info " type="submit">
+			<a href="{{ path('formation_index') }}" class="text-white">back to list</a>
 
-	<a href="{{ path('formation_index') }}">back to list</a>
+		</button>
+	</div>
+
 {% endblock %}

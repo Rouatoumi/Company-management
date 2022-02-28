@@ -1,4 +1,36 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<form action="{{path('user_new')}}" method="post">
+	<div class="card-body">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Email</label>
+			<input type="text" value="{{app.user.email}}" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password
+			</label>
+			<input type="password" class="form-control" value="{{app.user.password}}" name="password" id="exampleInputPassword1" placeholder="Password">
+		</div>
+
+
+		<div class="form-group">
+			<label for="exampleInputNom">Nom
+			</label>
+			<input type="text" class="form-control" value="{{app.user.nom}}" name="nom" id="">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPrenom">Prenom
+			</label>
+			<input type="text" class="form-control" value="{{app.user.prenom}}" name="prenom" id="">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputtelephone">Numéro télephone
+			</label>
+			<input type="number" class="form-control" name="num_telephone" value="{{app.user.num_telephone}}" id="">
+		</div>
+
+	</div>
+	<!-- /.card-body -->
+
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>

@@ -1,4 +1,37 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<form action="{{path('formation_new')}}" method="post">
+	<div class="card-body">
+		<div class="form-group">
+			<label for="exampleInputdate">Date Debut</label>
+			<input type="date" name="date" class="form-control" placeholder="Enter date">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputdate">Date Fin
+			</label>
+			<input type="date" name="date" class="form-control" placeholder="Enter date">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Formateur
+			</label>
+			<input type="text" class="form-control" name="formateur" placeholder="formateur">
+		</div>
+
+
+		<div class="form-group">
+			<label for="exampleInputNom">Service
+			</label>
+			<input type="text" class="form-control" name="service">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPrenom">Technologie
+			</label>
+			<input type="text" class="form-control" name="technologie">
+		</div>
+
+
+	</div>
+	<!-- /.card-body -->
+
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>

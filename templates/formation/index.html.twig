@@ -1,18 +1,19 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Formation index
+{% block title %}Affichage Formation 
 {% endblock %}
 
 {% block content %}
-	<h1>Formation index</h1>
+	<h1>Formation </h1>
 
-	<table class="table">
+	<table class="table table-stripped table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Date_debut</th>
 				<th>Date_fin</th>
 				<th>Formateur</th>
+				<th>technologie</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -23,9 +24,21 @@
 					<td>{{ formation.dateDebut ? formation.dateDebut|date('Y-m-d') : '' }}</td>
 					<td>{{ formation.dateFin ? formation.dateFin|date('Y-m-d') : '' }}</td>
 					<td>{{ formation.formateur }}</td>
+					<td>{{ formation.technologie.nom}}</td>
+
 					<td>
-						<a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
-						<a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+						<button class="btn btn-outline-primary" type="submit">
+							<a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
+
+						</button>
+						{% if is_granted('ROLE_ADMIN') %}
+
+							<button class="btn btn-outline-primary" type="submit">
+								<a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+
+							</button>
+						{% endif %}
+
 					</td>
 				</tr>
 			{% else %}
@@ -35,6 +48,12 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	{% if is_granted('ROLE_ADMIN') %}
 
-	<a href="{{ path('formation_new') }}">Create new</a>
+		<button class="btn btn-outline-primary" type="submit">
+			<a href="{{ path('formation_new') }}">Create new</a>
+
+		</button>
+	{% endif %}
+
 {% endblock %}

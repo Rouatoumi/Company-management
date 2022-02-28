@@ -16,7 +16,7 @@ class FormationType extends AbstractType
             ->add('date_fin')
             ->add('formateur')
             ->add('Service')
-        ;
+            ->add('technologie');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

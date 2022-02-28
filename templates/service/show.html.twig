@@ -1,6 +1,7 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Service
+{% block title %}
+	Afficher Service
 {% endblock %}
 
 {% block content %}
@@ -25,11 +26,38 @@
 				<td>{{ service.prix }}</td>
 			</tr>
 		</tbody>
+		<tfooter>
+			<tr>
+				<td>
+					<button class="btn btn-info" type="submit">
+						<a href="{{ path('service_index') }}" class="text-white">back to list</a>
+
+					</button>
+				</td>
+			</tr>
+			<tr>
+				{% if is_granted('ROLE_ADMIN') %}
+					<td>
+						<button class="btn btn-success" type="submit">
+							<a href="{{ path('service_edit', {'id': service.id}) }}" class="text-white">edit</a>
+
+						</button>
+					</td>
+				{% endif %}
+
+			</tr>
+			{#}
+																		<tr>
+																			<td>
+																				{{ include('user/_delete_form.html.twig') }}
+															
+																			</td>
+																		</tr> 
+																		{#}
+		</tfooter>
 	</table>
 
-	<a href="{{ path('service_index') }}">back to list</a>
-
-	<a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
-
-	{{ include('service/_delete_form.html.twig') }}
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('service/_delete_form.html.twig') }}
+	{% endif %}
 {% endblock %}

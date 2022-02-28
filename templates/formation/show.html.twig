@@ -1,6 +1,6 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Formation
+{% block title %}Affichage Formation
 {% endblock %}
 
 {% block content %}
@@ -24,12 +24,38 @@
 				<th>Formateur</th>
 				<td>{{ formation.formateur }}</td>
 			</tr>
+			<tr>
+				<th>Technologie</th>
+				<td>{{ formation.technologie.nom  }}</td>
+			</tr>
 		</tbody>
+		<tfooter>
+			<tr>
+				<td>
+					<button class="btn btn-info" type="submit">
+						<a href="{{ path('formation_index') }}" class="text-white">back to list</a>
+
+					</button>
+				</td>
+			</tr>
+			{% if is_granted('ROLE_ADMIN') %}
+
+				<tr>
+					<td>
+						<button class="btn btn-success" type="submit">
+							<a href="{{ path('formation_edit', {'id': formation.id}) }}" class="text-white">edit</a>
+
+						</button>
+					</td>
+				</tr>
+			{% endif %}
+
+		</tfooter>
 	</table>
+	{% if is_granted('ROLE_ADMIN') %}
 
-	<a href="{{ path('formation_index') }}">back to list</a>
 
-	<a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+		{{ include('formation/_delete_form.html.twig') }}
+	{% endif %}
 
-	{{ include('formation/_delete_form.html.twig') }}
 {% endblock %}

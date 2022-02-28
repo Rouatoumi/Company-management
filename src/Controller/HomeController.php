@@ -22,13 +22,21 @@ class HomeController extends AbstractController
         $nb_services = count($serviceRepository->findAll());
         $nb_msg = count($messageRepository->findAll());
         $nb_rendezvous = count($rendezVousRepository->findAll());
-        //dd($nb_users);
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'nb_users' => $nb_users,
-            'nb_services' => $nb_services,
-            'nb_msg' => $nb_msg,
-            'nb_rendezvous' => $nb_rendezvous
-        ]);
+        //dd($nb_users); 
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('home/index.html.twig', [
+                'controller_name' => 'HomeController',
+                'nb_users' => $nb_users,
+                'nb_services' => $nb_services,
+                'nb_msg' => $nb_msg,
+                'nb_rendezvous' => $nb_rendezvous
+            ]);
+        } else
+            return $this->render('home/index2.html.twig', [
+                'controller_name' => 'HomeController',
+                'nb_services' => $nb_services,
+                'nb_msg' => $nb_msg,
+                'nb_rendezvous' => $nb_rendezvous
+            ]);
     }
 }

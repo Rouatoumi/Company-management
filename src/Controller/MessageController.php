@@ -17,8 +17,21 @@ class MessageController extends AbstractController
     #[Route('/', name: 'message_index', methods: ['GET'])]
     public function index(MessageRepository $messageRepository): Response
     {
+        $user = $this->getUser();
+        //dd($user->email);
         return $this->render('message/index.html.twig', [
-            'messages' => $messageRepository->findAll(),
+            'messages' => $messageRepository->findByRecepteur($user->email),
+        ]);
+    }
+
+    #[Route('/envoyee', name: 'messageenvoyee_index', methods: ['GET'])]
+    public function envoyee(MessageRepository $messageRepository): Response
+    {
+        $user = $this->getUser();
+        ///dd($user->email);
+
+        return $this->render('message/envoyee.html.twig', [
+            'messages' => $messageRepository->findByEmetteur($user->email),
         ]);
     }
 
@@ -29,7 +42,14 @@ class MessageController extends AbstractController
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('POST')) {
+            $Emetteur = $request->get('Emetteur');
+            $Recepteur = $request->get('Recepteur');
+            $contenu = $request->get('contenu');
+            $message->setEmetteur($Emetteur);
+            $message->setRecepteur($Recepteur);
+            $message->setContenu($contenu);
+            //dd($categorie);
             $entityManager->persist($message);
             $entityManager->flush();
 
@@ -71,7 +91,7 @@ class MessageController extends AbstractController
     #[Route('/{id}', name: 'message_delete', methods: ['POST'])]
     public function delete(Request $request, Message $message, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
             $entityManager->remove($message);
             $entityManager->flush();
         }

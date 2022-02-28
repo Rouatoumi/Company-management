@@ -1,12 +1,12 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Service index
+{% block title %}Les services
 {% endblock %}
 
 {% block content %}
-	<h1>Service index</h1>
+	<h1>Services</h1>
 
-	<table class="table">
+	<table class="table table-stripped table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -22,10 +22,19 @@
 					<td>{{ service.id }}</td>
 					<td>{{ service.titre }}</td>
 					<td>{{ service.description }}</td>
-					<td>{{ service.prix }}</td>
+					<td>{{ service.prix }}
+						DT
+					</td>
 					<td>
-						<a href="{{ path('service_show', {'id': service.id}) }}">show</a>
-						<a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
+						<button class="btn btn-outline-primary">
+							<a href="{{ path('service_show', {'id': service.id}) }}">show</a>
+
+						</button>
+						{% if is_granted('ROLE_ADMIN') %}
+							<button class="btn btn-outline-primary">
+								<a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
+							</button>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}
@@ -35,6 +44,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('service_new') }}">Create new</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<button class="btn btn-outline-primary">
+			<a href="{{ path('service_new') }}">Create new</a>
+		</button>
+	{% endif %}
 {% endblock %}

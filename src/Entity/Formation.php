@@ -25,6 +25,9 @@ class Formation
     #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'formations')]
     private $Service;
 
+    #[ORM\ManyToOne(targetEntity: Technologie::class, inversedBy: 'formations')]
+    private $Technologie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Formation
     public function setService(?Service $Service): self
     {
         $this->Service = $Service;
+
+        return $this;
+    }
+
+    public function getTechnologie(): ?Technologie
+    {
+        return $this->Technologie;
+    }
+
+    public function setTechnologie(?Technologie $Technologie): self
+    {
+        $this->Technologie = $Technologie;
 
         return $this;
     }

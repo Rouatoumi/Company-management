@@ -16,13 +16,13 @@ class Service
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $titre;
+    public $titre;
 
     #[ORM\Column(type: 'text')]
     private $description;
 
     #[ORM\Column(type: 'float')]
-    private $prix;
+    public $prix;
 
     #[ORM\OneToMany(mappedBy: 'service', targetEntity: Projet::class)]
     private $projets;
@@ -30,14 +30,18 @@ class Service
     #[ORM\OneToMany(mappedBy: 'Service', targetEntity: Formation::class)]
     private $formations;
 
+    #[ORM\OneToMany(mappedBy: 'Service', targetEntity: User::class)]
+    private $users;
+
     public function __construct()
     {
         $this->projets = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
     public function __toString(): string
     {
-        return $this->id;
+        return $this->titre;
     }
 
     public function getId(): ?int
@@ -135,6 +139,36 @@ class Service
             // set the owning side to null (unless already changed)
             if ($formation->getService() === $this) {
                 $formation->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getService() === $this) {
+                $user->setService(null);
             }
         }
 

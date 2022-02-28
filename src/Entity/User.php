@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    public $email;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
@@ -36,9 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $prenom;
 
     #[ORM\Column(type: 'integer')]
-    private $num_telephone;
+    public $num_telephone;
 
-    
+    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'users')]
+    private $Service;
+
+
 
     public function getId(): ?int
     {
@@ -74,9 +77,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER'; 
-        
-       return  array_unique($roles);
+        $roles[] = 'ROLE_USER';
+
+        return  array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -142,6 +145,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNumTelephone(int $num_telephone): self
     {
         $this->num_telephone = $num_telephone;
+
+        return $this;
+    }
+
+    public function getService(): ?Service
+    {
+        return $this->Service;
+    }
+
+    public function setService(?Service $Service): self
+    {
+        $this->Service = $Service;
 
         return $this;
     }

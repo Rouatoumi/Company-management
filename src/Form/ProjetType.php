@@ -17,6 +17,7 @@ class ProjetType extends AbstractType
             ->add('responsable')
             ->add('equipe')
             ->add('service')
+            ->add('technologie');
         ;
     }
 

@@ -1,20 +1,23 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}User index
+{% block title %}
+	Les utilisateurs
 {% endblock %}
 
 {% block content %}
-	<h1>User index</h1>
+	<h1>Les coordonnées d'utilisateur </h1>
 
 	<table class="table table-stripped table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Email</th>
-				<th>Password</th>
+				{#}<th>Password</th> {#}
 				<th>Nom</th>
 				<th>Prenom</th>
 				<th>Num_telephone</th>
+				<th>service</th>
+
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -23,13 +26,21 @@
 				<tr>
 					<td>{{ user.id }}</td>
 					<td>{{ user.email }}</td>
-					<td>{{ user.password }}</td>
+					{#}	<td>{{ user.password }}</td> {#}
 					<td>{{ user.nom }}</td>
 					<td>{{ user.prenom }}</td>
 					<td>{{ user.numTelephone }}</td>
+					<td>{{ user.service }}</td>
 					<td>
-						<a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-						<a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+						<button class="btn btn-outline-primary" type="submit">
+							<a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+						</button>
+
+
+						<button class="btn btn-outline-primary" type="submit">
+							<a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+
+						</button>
 					</td>
 				</tr>
 			{% else %}
@@ -39,6 +50,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('user_new') }}">Create new</a>
+	<button class="btn btn-outline-primary" type="submit">
+		<a href="{{ path('user_new') }}">Create new</a>
+	</button>
 {% endblock %}
