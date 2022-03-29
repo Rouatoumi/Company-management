@@ -1,39 +1,42 @@
 {% extends 'layouts/master.html.twig' %}
 
-{% block title %}Message envoyée{% endblock %}
+{% block title %}Message envoyée
+{% endblock %}
 
 {% block content %}
-    <h1>Message envoyée</h1>
+	<h1>Message envoyée</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-               {#} <th>Emetteur</th> {#}
-                <th>Recepteur</th>
-                <th>Contenu</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                <td>{{ message.id }}</td>
-              {#}  <td>{{ message.Emetteur }}</td> {#}
-                <td>{{ message.Recepteur }}</td>
-                <td>{{ message.contenu }}</td>
-                <td>
-                    <a href="{{ path('message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('message_edit', {'id': message.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				{#} <th>Emetteur</th> {#}
+				<th>Recepteur</th>
+				<th>Contenu</th>
+				{#}<th>actions</th> {#}
+			</tr>
+		</thead>
+		<tbody>
+			{% for message in messages %}
+				<tr>
+					<td>{{ message.id }}</td>
+					{#}  <td>{{ message.Emetteur }}</td> {#}
+					<td>{{ message.Recepteur }}</td>
+					<td>{{ message.contenu }}</td>
+					{#}	<td>
+																<a href="{{ path('message_show', {'id': message.id}) }}">show</a>
+																
+										<a href="{{ path('message_edit', {'id': message.id}) }}">edit</a>
+										
+															</td> {#}
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('message_new') }}">Create new</a>
+	<a href="{{ path('message_new') }}">Create new</a>
 {% endblock %}

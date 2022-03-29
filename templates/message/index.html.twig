@@ -13,7 +13,7 @@
 				<th>Emetteur</th>
 				{#}  <th>Recepteur</th> {#}
 				<th>Contenu</th>
-				<th>actions</th>
+				{#}	<th>actions</th> {#}
 			</tr>
 		</thead>
 		<tbody>
@@ -23,11 +23,14 @@
 					<td>{{ message.Emetteur }}</td>
 					{#}  <td>{{ message.Recepteur }}</td> {#}
 					<td>{{ message.contenu }}</td>
-					<td>
-						<a href="{{ path('message_show', {'id': message.id}) }}">show</a> 
-						
-						<a href="{{ path('message_edit', {'id': message.id}) }}">edit</a>
-					</td>
+					{#}<td>
+																<a href="{{ path('message_show', {'id': message.id}) }}">show</a>
+										
+																
+										<a href="{{ path('message_edit', {'id': message.id}) }}">edit</a>
+										
+															</td> 
+															{#}
 				</tr>
 			{% else %}
 				<tr>
